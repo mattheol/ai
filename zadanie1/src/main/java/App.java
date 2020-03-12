@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App {
-    private static String dataFile = new File("src/main/resources/kroA100.tsp").getAbsolutePath();
+    private static String dataFile = new File("src/main/resources/kroA200.tsp").getAbsolutePath();
 
     public static List<Edge> loadEdges() throws Exception{
         List<Edge> edges = new ArrayList<Edge>();
@@ -29,18 +29,11 @@ public class App {
         edges.toArray(edgesTab);
         GreedyAlg greedyAlg = new GreedyAlg();
         Individual ind3 = greedyAlg.solve(edgesTab);
-        ind3.showGenotype();
         System.out.println(ind3.fitness());
 
-        SalesmanProblem pro = new SalesmanProblem(edges);
-
-        Individual ind = pro.generateIndividual();
-        Individual ind2 = pro.generateIndividual();
-
-        ind.showGenotype();
-        ind2.showGenotype();
-        System.out.println(ind.cross(ind2).fitness());
-
+        SalesmanProblem pro = new SalesmanProblem(edges,1000,0.1,0.7);
+        pro.generatePopulation();
+        pro.startEvolutionAlghoritm(10000,5);
 
     }
 }
