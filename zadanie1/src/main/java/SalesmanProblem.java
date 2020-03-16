@@ -1,10 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class SalesmanProblem {
     public int sizeOfPopulation;
@@ -13,10 +10,11 @@ public class SalesmanProblem {
     public double mutationProb;
     public double crossProb;
     BufferedWriter writer;
-    private static String SCORE_FILE_PATH = new File("src/main/resources/wyniki1.txt").getAbsolutePath();
+    private String SCORE_FILE_PATH;
 
 
-    public SalesmanProblem(List<Edge> edges, int sizeOfPopulation, double mutationProb, double crossProb){
+    public SalesmanProblem(List<Edge> edges, int sizeOfPopulation, double mutationProb, double crossProb,String filePath){
+        this.SCORE_FILE_PATH = new File("src/main/resources/wyniki/"+filePath+".csv").getAbsolutePath();
         this.edges = edges;
         this.sizeOfPopulation = sizeOfPopulation;
         this.mutationProb = mutationProb;
@@ -40,7 +38,8 @@ public class SalesmanProblem {
         Edge [] edgesInd = new Edge[edges.size()];
         Individual ind =new Individual(edgesInd.length);
         Edge edge = edges.remove(0);
-        Collections.shuffle(edges);
+        Random random = new Random();
+        Collections.shuffle(edges,random);
         edges.add(0,edge);
         edges.toArray(edgesInd);
         ind.genotype = edgesInd;
@@ -53,14 +52,20 @@ public class SalesmanProblem {
         Random random = new Random();
         int randomNumber;
         double randomProb;
-        int groupSize;
+        int groupSize=0;
         Individual[] parents = new Individual[2];
         Individual[] group = new Individual[sizeOfTour];
         int generationNumber = 0;
         while(generationNumber < numberOfGenerations){
-            groupSize = 0;
             newPopSize = 0;
-            while(newPopSize < sizeOfPopulation){
+            //Add random individuals every 10th population
+            if(generationNumber % 10 ==0){
+                for(int i=0; i< 200;i++ ){
+                    population[i] = generateIndividual();
+                }
+            }
+            while(newPopSize < sizeOfPopulation) {
+                groupSize = 0;
                 //Random individuals selected from population
                 while(groupSize < sizeOfTour){
                     randomNumber = random.nextInt(sizeOfPopulation);
@@ -82,13 +87,8 @@ public class SalesmanProblem {
                 if(randomProb < crossProb){
                     newPopulation[newPopSize] = parents[0].cross(parents[1]);
                     newPopSize++;
-                    newPopulation[newPopSize] = parents[0].cross(parents[1]);
-                    newPopSize++;
-
                 }else{
-                    newPopulation[newPopSize] = parents[0];
-                    newPopSize++;
-                    newPopulation[newPopSize] = parents[1];
+                    newPopulation[newPopSize] = parents[0].clone();
                     newPopSize++;
                 }
                 //mutation

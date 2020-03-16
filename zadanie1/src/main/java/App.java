@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App {
-    private static String dataFile = new File("src/main/resources/kroA200.tsp").getAbsolutePath();
+    private static String dataFile = new File("src/main/resources/kroA100.tsp").getAbsolutePath();
 
     public static List<Edge> loadEdges() throws Exception{
         List<Edge> edges = new ArrayList<Edge>();
@@ -31,9 +31,35 @@ public class App {
         Individual ind3 = greedyAlg.solve(edgesTab);
         System.out.println(ind3.fitness());
 
-        SalesmanProblem pro = new SalesmanProblem(edges,1000,0.1,0.7);
-        pro.generatePopulation();
-        pro.startEvolutionAlghoritm(10000,5);
+        SalesmanProblem pro = new SalesmanProblem(edges,1000,0.5,0.85,"wynik1");
+        pro.startEvolutionAlghoritm(1000,5);
+        /*
+        pro = new SalesmanProblem(edges,5000,0.006,0.8,"wynik2");
+        pro.startEvolutionAlghoritm(200,5);
 
+        pro = new SalesmanProblem(edges,5000,0.006,0.8,"wynik3");
+        pro.startEvolutionAlghoritm(200,5);
+
+        pro = new SalesmanProblem(edges,5000,0.006,0.8,"wynik4");
+        pro.startEvolutionAlghoritm(200,5);
+
+        pro = new SalesmanProblem(edges,5000,0.006,0.8,"wynik5");
+        pro.startEvolutionAlghoritm(200,5);
+
+        pro = new SalesmanProblem(edges,5000,0.006,0.8,"wynik6");
+        pro.startEvolutionAlghoritm(200,5);
+
+        pro = new SalesmanProblem(edges,5000,0.006,0.8,"wynik7");
+        pro.startEvolutionAlghoritm(200,5);
+
+        pro = new SalesmanProblem(edges,5000,0.006,0.8,"wynik8");
+        pro.startEvolutionAlghoritm(200,5);
+
+        pro = new SalesmanProblem(edges,5000,0.006,0.8,"wynik9");
+        pro.startEvolutionAlghoritm(200,5);
+
+        pro = new SalesmanProblem(edges,5000,0.006,0.8,"wynik10");
+        pro.startEvolutionAlghoritm(200,5);
+        */
     }
 }
