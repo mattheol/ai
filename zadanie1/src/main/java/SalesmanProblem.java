@@ -56,11 +56,12 @@ public class SalesmanProblem {
         Individual[] parents = new Individual[2];
         Individual[] group = new Individual[sizeOfTour];
         int generationNumber = 0;
+        writeToFile(-1);
         while(generationNumber < numberOfGenerations){
             newPopSize = 0;
             //Add random individuals every 10th population
             if(generationNumber % 10 ==0){
-                for(int i=0; i< 200;i++ ){
+                for(int i=0; i< 4000;i++ ){
                     population[i] = generateIndividual();
                 }
             }
