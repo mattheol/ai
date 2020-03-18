@@ -60,11 +60,7 @@ public class SalesmanProblem {
         while(generationNumber < numberOfGenerations){
             newPopSize = 0;
             //Add random individuals every 10th population
-            if(generationNumber % 10 ==0){
-                for(int i=0; i< 4000;i++ ){
-                    population[i] = generateIndividual();
-                }
-            }
+
             while(newPopSize < sizeOfPopulation) {
                 groupSize = 0;
                 //Random individuals selected from population

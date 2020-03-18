@@ -45,14 +45,15 @@ public class Individual implements  Cloneable{
         }
         if(position1 >position2){
             int pos = position1;
-            position1 = 2;
+            position1 = position2;
             position2 = pos;
         }
-        while(position1 != position2){
+        while(position1<position2){
             Edge toSwap = genotype[position1];
             genotype[position1] = genotype[position2];
             genotype[position2] = toSwap;
             position1++;
+            position2--;
         }
     }
 

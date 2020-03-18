@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App {
-    private static String dataFile = new File("src/main/resources/kroA150.tsp").getAbsolutePath();
+    private static String dataFile = new File("src/main/resources/fl417.tsp").getAbsolutePath();
 
     public static List<Edge> loadEdges() throws Exception{
         List<Edge> edges = new ArrayList<Edge>();
@@ -32,10 +32,9 @@ public class App {
         System.out.println(ind3.fitness());
         SalesmanProblem pro;
         for(int i=1;i<11;i++){
-            pro= new SalesmanProblem(edges,10000,0.5,0.8,"wynik"+i);
-            pro.startEvolutionAlghoritm(1000, 5);
+            pro= new SalesmanProblem(edges,1500,0.3,0.7,"wynik"+i);
+            pro.startEvolutionAlghoritm(1500, 5);
         }
-
 
 
     }
