@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App {
-    private static String dataFile = new File("src/main/resources/fl417.tsp").getAbsolutePath();
+    private static String dataFile = new File("src/main/resources/berlin52.tsp").getAbsolutePath();
 
     public static List<Edge> loadEdges() throws Exception{
         List<Edge> edges = new ArrayList<Edge>();
@@ -31,10 +31,21 @@ public class App {
         Individual ind3 = greedyAlg.solve(edgesTab);
         System.out.println(ind3.fitness());
         SalesmanProblem pro;
-        for(int i=1;i<11;i++){
-            pro= new SalesmanProblem(edges,1500,0.3,0.7,"wynik"+i);
-            pro.startEvolutionAlghoritm(1500, 5);
-        }
+        pro= new SalesmanProblem(edges, 1000,0.3,0.7,"wynik1");
+        pro.startEvolutionAlghoritm(100, 1);
+
+        pro= new SalesmanProblem(edges, 1000,0.3,0.7,"wynik2");
+        pro.startEvolutionAlghoritm(100, 3);
+
+        pro= new SalesmanProblem(edges, 1000,0.3,0.7,"wynik3");
+        pro.startEvolutionAlghoritm(100, 5);
+
+        pro= new SalesmanProblem(edges,1000,0.3,0.7,"wynik4");
+        pro.startEvolutionAlghoritm(100, 7);
+
+        pro= new SalesmanProblem(edges,1000,0.3,0.7,"wynik5");
+        pro.startEvolutionAlghoritm(100, 10);
+
 
 
     }
